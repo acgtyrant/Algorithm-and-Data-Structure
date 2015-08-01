@@ -3,6 +3,17 @@
 #include <algorithm>
 #include <vector>
 
+namespace {
+
+std::vector<int>::iterator MedianOf3(
+    std::vector<int>::iterator one,
+    std::vector<int>::iterator two,
+    std::vector<int>::iterator three) {
+  return std::min_element(one, std::min_element(two, three));
+}
+
+}  // namespace
+
 void QuickSort(
     const std::vector<int>::iterator first,
     const std::vector<int>::iterator last) {
@@ -11,6 +22,13 @@ void QuickSort(
   auto low = first + 1;
   auto high = last - 1;
   auto partition = first;
+  if (first + 2 < last) {
+    auto median = MedianOf3(
+        first,
+        first + (last - first) / 2,
+        last - 1);
+    std::iter_swap(partition, median);
+  }
   while (low <= high) {
     while (*low < *partition && low != last) ++low;
     while (*high > *partition && high != first) --high;
