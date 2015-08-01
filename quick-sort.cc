@@ -12,12 +12,14 @@ std::vector<int>::iterator MedianOf3(
   return std::min_element(one, std::min_element(two, three));
 }
 
+constexpr int cutoff = 3;
+
 }  // namespace
 
 void QuickSort(
     const std::vector<int>::iterator first,
     const std::vector<int>::iterator last) {
-  if (first == last || first + 1 == last) return;
+  if (last - first < cutoff) return std::sort(first, last);
   std::random_shuffle(first + 1, last);
   auto low = first + 1;
   auto high = last - 1;
@@ -38,3 +40,4 @@ void QuickSort(
   QuickSort(first, low - 1);
   QuickSort(low, last);
 }
+
