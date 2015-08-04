@@ -1,13 +1,13 @@
-#include "heap-sort.h"
-#include "merge-sort.h"
-#include "selection-sort.h"
-#include "quick-sort.h"
-
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <random>
 #include <vector>
+
+#include "heap-sort.h"
+#include "merge-sort.h"
+#include "quick-sort.h"
+#include "selection-sort.h"
 
 namespace {
 
