@@ -1,3 +1,4 @@
+#include "heap-sort.h"
 #include "merge-sort.h"
 #include "selection-sort.h"
 #include "quick-sort.h"
@@ -33,7 +34,8 @@ int main(void) {
   // std::sort(nums.begin(), nums.end());
   // SelectionSort(nums.begin(), nums.end());
   // MergeSort(nums.begin(), nums.end());
-  QuickSort(nums.begin(), nums.end());
+  // QuickSort(nums.begin(), nums.end());
+  HeapSort(nums.begin(), nums.end());
   std::ofstream sorted_int_fstream("sorted-int.txt");
   for (int num : nums) sorted_int_fstream << num << std::endl;
   sorted_int_fstream.close();
