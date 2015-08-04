@@ -54,13 +54,44 @@ void HeapSort(
     *iterator = binary_heap.DeleteMax();
 }
 
-// namespace in_place {
+namespace in_place {
 
-// void HeapSort(
-    // std::vector<int>::iterator first,
-    // std::vector<int>::iterator last) {
-  // BinaryHeap binary_heap(first, last);
-  // binary_heap.Sort();
-// }
+void BinaryHeap::Sort() {
+  for (auto index = Parent(last_ - 1); index >= first_; --index)
+    Sink(index);
+  while (last_ - 1 > first_) {
+    std::iter_swap(first_, last_ - 1);
+    Sink(first_);
+    --last_;
+  }
+}
+
+void BinaryHeap::Swim(std::vector<int>::iterator index) {
+  auto parent = Parent(index);
+  while (index > first_ && Superior(index, parent)) {
+    std::iter_swap(parent, index);
+    index = parent;
+    parent = Parent(index);
+  }
+}
+
+void BinaryHeap::Sink(std::vector<int>::iterator index) {
+  auto child = Child(index);
+  while (child < last_ && Superior(child, index)) {
+    // child + 1 is right_child of index while child is left_child of index.
+    if (child + 1 < last_ && Superior(child + 1, child))
+      child = child + 1;
+    std::iter_swap(index, child);
+    index = child;
+    child = Child(index);
+  }
+}
+
+void HeapSort(
+    std::vector<int>::iterator first,
+    std::vector<int>::iterator last) {
+  BinaryHeap binary_heap(first, last);
+  binary_heap.Sort();
+}
 
 }  // in_place

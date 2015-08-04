@@ -43,4 +43,41 @@ void HeapSort(
     std::vector<int>::iterator first,
     std::vector<int>::iterator last);
 
+namespace in_place {
+
+class BinaryHeap {
+ public:
+  BinaryHeap(
+      std::vector<int>::iterator first,
+      std::vector<int>::iterator last) : first_(first), last_(last) {}
+  void Sort();
+
+ private:
+  void Swim(std::vector<int>::iterator index);
+  void Sink(std::vector<int>::iterator index);
+  // It judge the priority between two nodes.
+  bool Superior(
+      std::vector<int>::iterator former,
+      std::vector<int>::iterator later) {
+    // For simplicity, we construct a max priority queue.
+    return (*former < *later);
+  }
+  std::vector<int>::iterator Parent(std::vector<int>::iterator index) {
+    if (index == first_) return first_;
+    return first_ + (index - first_ + 1) / 2 - 1;
+  }
+  std::vector<int>::iterator Child(std::vector<int>::iterator index) {
+    return first_ + (index - first_ + 1) * 2 - 1;
+  }
+
+  std::vector<int>::iterator first_;
+  std::vector<int>::iterator last_;
+};
+
+void HeapSort(
+    std::vector<int>::iterator first,
+    std::vector<int>::iterator last);
+
+}  // in_place
+
 #endif // HEAP_SORT_H
