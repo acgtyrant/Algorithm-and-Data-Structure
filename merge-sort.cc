@@ -33,7 +33,7 @@ void Sort(
     const std::vector<int>::const_iterator first,
     const std::vector<int>::const_iterator last,
     std::vector<int>::iterator tmp_iterator) {
-  if (first == last) return;
+  if (first == last || first + 1 == last) return;
   Sort(first, first + (last - first) / 2,
        tmp_iterator);
   Sort(first + (last - first) / 2, last,
