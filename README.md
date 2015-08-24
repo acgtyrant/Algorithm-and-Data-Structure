@@ -25,6 +25,10 @@ I try my best to implement these, but I still failed, so welcome some pull reque
 * Swap vector in merge-sort to optimize it.
 * Use insertion-sort in small vector from merge-sort to optimize it.
 * Improve quick-sort to anti duplicate.
+* Implement complex number class.
+* Implement string class.
+* Implement vector<T> template.
+* Implement expression calculator by node class inheritance system.
 
 ## Contributions
 
