@@ -4,7 +4,8 @@ class Complex {
  public:
   Complex() = default;
   Complex(double real_part, double imaginary_part)
-      : real_part_(real_part), imaginary_part_(imaginary_part) {}
+      : real_part_(real_part),
+        imaginary_part_(imaginary_part) {}
   Complex(const Complex &) = default;
   Complex(Complex &&) = default;
   Complex &operator=(Complex right_hand_side) {
