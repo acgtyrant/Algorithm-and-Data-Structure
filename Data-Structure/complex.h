@@ -24,6 +24,10 @@ class Complex {
     imaginary_part_ = new_imaginary_part;
   }
 
+ private:
+  double real_part_ = 0;
+  double imaginary_part_ = 0;
+
   friend const Complex AdditiveInverse(const Complex element);
   friend const Complex MultiplicativeInverse(const Complex element);
   friend const Complex AbsoluteValue(const Complex element);
@@ -40,10 +44,6 @@ class Complex {
       const Complex left_hand_side, const Complex right_hand_side);
   friend bool operator!=(
       const Complex left_hand_side, const Complex right_hand_side);
-
- private:
-  double real_part_ = 0;
-  double imaginary_part_ = 0;
 };
 
 const Complex AdditiveInverse(const Complex element);
