@@ -4,7 +4,7 @@
 #include <algorithm>
 
 template <typename RandomrIterator>
-void InsertSort(RandomrIterator first, RandomrIterator last) {
+void InsertionSort(RandomrIterator first, RandomrIterator last) {
   RandomrIterator temporary_iterator;
   for (auto iterator = first; iterator != last; ++iterator) {
     temporary_iterator = iterator;

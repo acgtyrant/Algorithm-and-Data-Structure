@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "insert-sort.h"
+#include "insertion-sort.h"
 
 namespace mergesort {
 
@@ -46,7 +46,7 @@ void Sort(
   // TODO InsertSort is not compatible with the swap implement of MergeSort, I
   // do not know how to fix it.
   // if (last - first < mergesort::cutoff) {
-    // InsertSort(first, last);
+    // InsertionSort(first, last);
     // return;
   // }
 
