@@ -14,7 +14,7 @@ template <typename RandomIterator>
 void Merge(
     RandomIterator first,
     RandomIterator last,
-    RandomIterator tmp_iterator) {
+    RandomIterator temporary_iterator) {
   // We do not need to judge first == last, because Sort() do it.
   const auto middle = first + (last - first) / 2;
   auto first_half_iterator = first;
@@ -22,17 +22,17 @@ void Merge(
   while (first_half_iterator != middle &&
          second_half_iterator != last) {
     if (*first_half_iterator < *second_half_iterator) {
-      *tmp_iterator++ = *first_half_iterator++;
+      *temporary_iterator++ = *first_half_iterator++;
     } else {
-      *tmp_iterator++ = *second_half_iterator++;
+      *temporary_iterator++ = *second_half_iterator++;
     }
   }
   if (first_half_iterator == middle)
     while (second_half_iterator != last)
-      *tmp_iterator++ = *second_half_iterator++;
+      *temporary_iterator++ = *second_half_iterator++;
   if (second_half_iterator == last)
     while (first_half_iterator != middle)
-      *tmp_iterator++ = *first_half_iterator++;
+      *temporary_iterator++ = *first_half_iterator++;
 }
 
 // Sorts the elements in the range [first, last) too.
@@ -40,21 +40,21 @@ template <typename RandomIterator>
 void Sort(
     RandomIterator first,
     RandomIterator last,
-    RandomIterator tmp_iterator) {
+    RandomIterator temporary_iterator) {
   if (last - first < mergesort::cutoff) {
     InsertionSort(first, last);
-    std::copy(first, last, tmp_iterator);
+    std::copy(first, last, temporary_iterator);
     return;
   }
   Sort(
-      tmp_iterator,
-      tmp_iterator + (last - first) / 2,
+      temporary_iterator,
+      temporary_iterator + (last - first) / 2,
       first);
   Sort(
-      tmp_iterator + (last - first) / 2,
-      tmp_iterator + (last - first),
+      temporary_iterator + (last - first) / 2,
+      temporary_iterator + (last - first),
       first + (last - first) / 2);
-  Merge(first, last, tmp_iterator);
+  Merge(first, last, temporary_iterator);
 }
 
 }  // namespace
