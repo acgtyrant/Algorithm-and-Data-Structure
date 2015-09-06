@@ -3,6 +3,8 @@
 
 #include <algorithm>
 
+#include "insertion-sort.h"
+
 // bad namespace scope while it is included in headfile
 namespace quicksort {
 
@@ -22,7 +24,7 @@ template <typename RandomIterator>
 void QuickSort(
     RandomIterator first,
     RandomIterator last) {
-  if (last - first < quicksort::cutoff) return std::sort(first, last);
+  if (last - first < quicksort::cutoff) return InsertionSort(first, last);
   std::random_shuffle(first + 1, last);
   auto low = first + 1;
   auto high = last - 1;
