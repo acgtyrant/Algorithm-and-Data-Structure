@@ -23,19 +23,19 @@ I try my best to implement these, but I still failed, so welcome some pull reque
 
 ## TODO
 
-[x] Use template to generification.
-[] Use unit test framework.
-[x] Swap vector in merge-sort to optimize it.
-[x] Use insertion-sort in small vector from merge-sort to optimize it.
-[] Improve quick-sort to anti duplicate.
-[x] Make insertion-sort compatible with the swap implement of merge-sort.
+- [x] Use template to generification.
+- [ ] Use unit test framework.
+- [x] Swap vector in merge-sort to optimize it.
+- [x] Use insertion-sort in small vector from merge-sort to optimize it.
+- [ ] Improve quick-sort to anti duplicate.
+- [x] Make insertion-sort compatible with the swap implement of merge-sort.
 
-[x] Implement string class.
-[] Implement vector<T> template.
-[] Implement expression calculator by node class inheritance system.
+- [x] Implement string class.
+- [ ] Implement vector<T> template.
+- [ ] Implement expression calculator by node class inheritance system.
 
-[] [N-Queen Problem](http://www.zhihu.com/question/22608820/answer/21968467).
-[] LeetCode?
+- [ ] [N-Queen Problem](http://www.zhihu.com/question/22608820/answer/21968467).
+- [ ] LeetCode?
 
 ## Contributions
 
