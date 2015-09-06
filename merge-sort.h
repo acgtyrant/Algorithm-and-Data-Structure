@@ -42,16 +42,23 @@ void Sort(
     RandomIterator last,
     RandomIterator tmp_iterator) {
   if (first == last || first + 1 == last) return;
-  if (last - first < mergesort::cutoff) {
-    InsertSort(first, last);
-    return;
-  }
-  Sort(first, first + (last - first) / 2,
-       tmp_iterator);
-  Sort(first + (last - first) / 2, last,
-       tmp_iterator + (last - first) / 2);
+
+  // TODO InsertSort is not compatible with the swap implement of MergeSort, I
+  // do not know how to fix it.
+  // if (last - first < mergesort::cutoff) {
+    // InsertSort(first, last);
+    // return;
+  // }
+
+  Sort(
+      tmp_iterator,
+      tmp_iterator + (last - first) / 2,
+      first);
+  Sort(
+      tmp_iterator + (last - first) / 2,
+      tmp_iterator + (last - first),
+      first + (last - first) / 2);
   Merge(first, last, tmp_iterator);
-  std::copy(tmp_iterator, tmp_iterator + (last - first), first);
 }
 
 }  // namespace
