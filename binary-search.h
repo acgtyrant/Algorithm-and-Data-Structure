@@ -7,10 +7,10 @@
 // [first, last). There is std::binary_search exists, so do not use namespace
 // std.
 
-template <typename ForwardIterator, typename T>
+template <typename RandomrIterator, typename T>
 bool BinarySearch(
-    const ForwardIterator first,
-    const ForwardIterator last,
+    RandomrIterator first,
+    RandomrIterator last,
     const T value) {
   if (first == last) return false;
   auto middle = first + (last - first) / 2;
@@ -21,13 +21,13 @@ bool BinarySearch(
 
 namespace iteration {
 
-template <typename ForwardIterator, typename T>
+template <typename RandomrIterator, typename T>
 // first and last are not const.
 bool BinarySearch(
-    ForwardIterator first,
-    ForwardIterator last,
+    RandomrIterator first,
+    RandomrIterator last,
     const T value) {
-  ForwardIterator middle;
+  RandomrIterator middle;
   while (first != last) {
     middle = first + (last - first) / 2;
     if (*middle == value) return true;
