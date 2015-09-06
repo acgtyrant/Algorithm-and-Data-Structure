@@ -1,8 +1,6 @@
 #ifndef BINARY_SEARCH_H_
 #define BINARY_SEARCH_H_
 
-#include <vector>
-
 // Checks if an element equivalent to value appears within the range
 // [first, last). There is std::binary_search exists, so do not use namespace
 // std.
