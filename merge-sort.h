@@ -6,7 +6,7 @@
 
 #include "insertion-sort.h"
 
-namespace mergesort {
+namespace merge_sort_h_ {
 
 constexpr int cutoff = 3;
 
@@ -41,7 +41,7 @@ void Sort(
     RandomIterator first,
     RandomIterator last,
     RandomIterator temporary_iterator) {
-  if (last - first < mergesort::cutoff) {
+  if (last - first < merge_sort_h_::cutoff) {
     InsertionSort(first, last);
     std::copy(first, last, temporary_iterator);
     return;
@@ -69,7 +69,7 @@ void MergeSort(
     RandomIterator temporary_first) {
     // use as an iterator of the temporary vector, so it requires the caller
     // construct an temporary vector and pass it.
-  mergesort::Sort(first, last, temporary_first);
+  merge_sort_h_::Sort(first, last, temporary_first);
   std::copy(temporary_first, temporary_first + (last - first), first);
 }
 

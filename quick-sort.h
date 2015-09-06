@@ -6,7 +6,7 @@
 #include "insertion-sort.h"
 
 // bad namespace scope while it is included in headfile
-namespace quicksort {
+namespace quick_sort_h_ {
 
 template <typename ForwardIterator>
 ForwardIterator MedianOf3(
@@ -24,13 +24,13 @@ template <typename RandomIterator>
 void QuickSort(
     RandomIterator first,
     RandomIterator last) {
-  if (last - first < quicksort::cutoff) return InsertionSort(first, last);
+  if (last - first < quick_sort_h_::cutoff) return InsertionSort(first, last);
   std::random_shuffle(first + 1, last);
   auto low = first + 1;
   auto high = last - 1;
   auto partition = first;
   if (first + 2 < last) {
-    auto median = quicksort::MedianOf3(
+    auto median = quick_sort_h_::MedianOf3(
         first,
         first + (last - first) / 2,
         last - 1);
@@ -49,7 +49,7 @@ void QuickSort(
 namespace anti_duplicate {
 
 template <typename RandomIterator>
-void QuickSort(
+void quick_sort_h_(
     RandomIterator first,
     RandomIterator last);
 
