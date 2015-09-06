@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <vector>
 
+#include "insert-sort.h"
+
 namespace mergesort {
 
 constexpr int cutoff = 3;
@@ -40,6 +42,10 @@ void Sort(
     RandomIterator last,
     RandomIterator tmp_iterator) {
   if (first == last || first + 1 == last) return;
+  if (last - first < mergesort::cutoff) {
+    InsertSort(first, last);
+    return;
+  }
   Sort(first, first + (last - first) / 2,
        tmp_iterator);
   Sort(first + (last - first) / 2, last,
