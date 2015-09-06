@@ -62,11 +62,12 @@ void Sort(
 template <typename RandomIterator>
 void MergeSort(
     RandomIterator first,
-    RandomIterator last) {
-  // Get the same size as nums, so we can use some stable iteartors later.
-  std::vector<int> tmp_vector(last - first);
-  mergesort::Sort(first, last, tmp_vector.begin());
-  std::copy(tmp_vector.begin(), tmp_vector.end(), first);
+    RandomIterator last,
+    RandomIterator temporary_first) {
+    // use as an iterator of the temporary vector, so it requires the caller
+    // construct an temporary vector and pass it.
+  mergesort::Sort(first, last, temporary_first);
+  std::copy(temporary_first, temporary_first + (last - first), first);
 }
 
 #endif  // MERGE_SORT_H_
