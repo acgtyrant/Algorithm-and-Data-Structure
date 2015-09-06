@@ -4,7 +4,9 @@
 #include <algorithm>
 #include <vector>
 
-namespace {
+namespace mergesort {
+
+constexpr int cutoff = 3;
 
 template <typename RandomIterator>
 void Merge(
@@ -57,7 +59,7 @@ void MergeSort(
     RandomIterator last) {
   // Get the same size as nums, so we can use some stable iteartors later.
   std::vector<int> tmp_vector(last - first);
-  Sort(first, last, tmp_vector.begin());
+  mergesort::Sort(first, last, tmp_vector.begin());
   std::copy(tmp_vector.begin(), tmp_vector.end(), first);
 }
 

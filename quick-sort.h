@@ -4,7 +4,7 @@
 #include <algorithm>
 
 // bad namespace scope while it is included in headfile
-namespace {
+namespace quicksort {
 
 template <typename ForwardIterator>
 ForwardIterator MedianOf3(
@@ -22,13 +22,13 @@ template <typename RandomIterator>
 void QuickSort(
     RandomIterator first,
     RandomIterator last) {
-  if (last - first < cutoff) return std::sort(first, last);
+  if (last - first < quicksort::cutoff) return std::sort(first, last);
   std::random_shuffle(first + 1, last);
   auto low = first + 1;
   auto high = last - 1;
   auto partition = first;
   if (first + 2 < last) {
-    auto median = MedianOf3(
+    auto median = quicksort::MedianOf3(
         first,
         first + (last - first) / 2,
         last - 1);
