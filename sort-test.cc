@@ -35,8 +35,8 @@ int main(void) {
   // std::sort(nums.begin(), nums.end());
   // HeapSort(nums.begin(), nums.end());
   // in_place::HeapSort(nums.begin(), nums.end());
-  InsertSort(nums.begin(), nums.end());
-  // MergeSort(nums.begin(), nums.end());
+  // InsertSort(nums.begin(), nums.end());
+  MergeSort(nums.begin(), nums.end());
   // QuickSort(nums.begin(), nums.end());
   // SelectionSort(nums.begin(), nums.end());
   std::ofstream sorted_int_fstream("sorted-int.txt");
