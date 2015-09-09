@@ -1,6 +1,6 @@
 #include <utility>
 
-class Complex {
+class Complex final {
  public:
   Complex() = default;
   Complex(double real_part, double imaginary_part)

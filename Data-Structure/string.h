@@ -1,7 +1,7 @@
 #include <cassert>
 #include <cstring>
 
-class String {
+class String final {
  public:
   String() : string_(new char[1]) { string_[0] = '\0'; }
   // Convert char * to String implicitly is allowed.
