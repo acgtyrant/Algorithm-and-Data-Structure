@@ -26,33 +26,31 @@ void QuickSort(
     RandomIterator last) {
   if (last - first < quick_sort_h_::cutoff) return InsertionSort(first, last);
   std::random_shuffle(first + 1, last);
-  auto low = first + 1;
-  auto high = last - 1;
-  auto partition = first;
   if (first + 2 < last) {
     auto median = quick_sort_h_::MedianOf3(
         first,
         first + (last - first) / 2,
         last - 1);
-    std::iter_swap(partition, median);
+    std::iter_swap(first, median);
   }
-  while (low <= high) {
-    while (*low < *partition && low != last) ++low;
-    while (*high > *partition && high != first) --high;
-    if (low < high) std::iter_swap(low, high);
+  auto partition_value = *first;
+  auto less = first;
+  auto equal = first + 1;
+  auto more = last - 1;
+  while (equal <= more) {
+    if (*equal < partition_value) {
+      std::iter_swap(equal, less);
+      ++equal;
+      ++less;
+    } else if (*equal > partition_value) {
+      std::iter_swap(equal, more);
+      --more;
+    } else {
+      ++equal;
+    }
   }
-  std::iter_swap(first, low - 1);
-  QuickSort(first, low - 1);
-  QuickSort(low, last);
+  QuickSort(first, less);
+  QuickSort(equal, last);
 }
-
-namespace anti_duplicate {
-
-template <typename RandomIterator>
-void quick_sort_h_(
-    RandomIterator first,
-    RandomIterator last);
-
-}  // anti_duplicate
 
 #endif // QUICK_SORT_H_
