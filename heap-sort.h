@@ -1,83 +1,51 @@
-#ifndef HEAP_SORT_H
-#define HEAP_SORT_H
+#ifndef HEAP_SORT_H_
+#define HEAP_SORT_H_
 
-#include <vector>
+#include <algorithm>
 
-class BinaryHeap {
- public:
-  BinaryHeap(
-      std::vector<int>::iterator first,
-      std::vector<int>::iterator last) {
-    for (auto iterator = first; iterator != last; ++iterator)
-      Insert(*iterator);
+namespace heap_sort_h_ {
+
+template <typename RandomIterator>
+void Sink(RandomIterator iterator, RandomIterator first, RandomIterator last) {
+  auto left_child = first + (iterator - first) * 2 + 1;
+  auto right_child = left_child + 1;
+  auto child = left_child;
+  while (left_child < last) {
+    if (right_child < last && *right_child > *left_child) {
+      child = right_child;
+    }
+    if (*child > *iterator) {
+      std::iter_swap(iterator, child);
+      iterator = child;
+      left_child = first + (iterator - first) * 2 + 1;
+      right_child = left_child + 1;
+      child = left_child;
+    } else {
+      break;
+    }
   }
+}
 
-  void Insert(int data);
-  int DeleteMax();
-  void Sort();
-
- private:
-  void Swim(std::vector<int>::iterator index);
-  void Sink(std::vector<int>::iterator index);
-  // It judge the priority between two nodes.
-  bool Superior(
-      std::vector<int>::iterator former,
-      std::vector<int>::iterator later) {
-    // For simplicity, we construct a max priority queue.
-    return (*former < *later);
+template <typename RandomIterator>
+void BuildHeap(RandomIterator first, RandomIterator last) {
+  for (auto iterator = first + (last - first) / 2 - 1;
+      iterator >= first;
+      --iterator) {
+    heap_sort_h_::Sink(iterator, first, last);
   }
-  std::vector<int>::iterator Parent(std::vector<int>::iterator index) {
-    if (index == priority_query_.begin()) return priority_query_.begin();
-    return priority_query_.begin() +
-           (index - priority_query_.begin() + 1) / 2 - 1;
+}
+
+}
+
+template <typename RandomIterator>
+void HeapSort(RandomIterator first, RandomIterator last) {
+  BuildHeap(first, last);
+  auto iterator = last - 1;
+  while (iterator > first) {
+    std::iter_swap(first, iterator);
+    heap_sort_h_::Sink(first, first, iterator);
+    --iterator;
   }
-  std::vector<int>::iterator Child(std::vector<int>::iterator index) {
-    return priority_query_.begin() +
-           (index - priority_query_.begin() + 1) * 2 - 1;
-  }
+}
 
-  std::vector<int> priority_query_;
-};
-
-void HeapSort(
-    std::vector<int>::iterator first,
-    std::vector<int>::iterator last);
-
-namespace in_place {
-
-class BinaryHeap {
- public:
-  BinaryHeap(
-      std::vector<int>::iterator first,
-      std::vector<int>::iterator last) : first_(first), last_(last) {}
-  void Sort();
-
- private:
-  void Swim(std::vector<int>::iterator index);
-  void Sink(std::vector<int>::iterator index);
-  // It judge the priority between two nodes.
-  bool Superior(
-      std::vector<int>::iterator former,
-      std::vector<int>::iterator later) {
-    // For simplicity, we construct a max priority queue.
-    return (*former < *later);
-  }
-  std::vector<int>::iterator Parent(std::vector<int>::iterator index) {
-    if (index == first_) return first_;
-    return first_ + (index - first_ + 1) / 2 - 1;
-  }
-  std::vector<int>::iterator Child(std::vector<int>::iterator index) {
-    return first_ + (index - first_ + 1) * 2 - 1;
-  }
-
-  std::vector<int>::iterator first_;
-  std::vector<int>::iterator last_;
-};
-
-void HeapSort(
-    std::vector<int>::iterator first,
-    std::vector<int>::iterator last);
-
-}  // in_place
-
-#endif // HEAP_SORT_H
+#endif // HEAP_SORT_H_
